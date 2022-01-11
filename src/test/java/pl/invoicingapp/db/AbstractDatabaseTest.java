@@ -11,9 +11,9 @@ import pl.invoicingapp.model.Invoice;
 
 import java.util.Optional;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static pl.invoicingapp.Entries.invoice1;
 
 public abstract class AbstractDatabaseTest {
 
@@ -26,45 +26,45 @@ public abstract class AbstractDatabaseTest {
     void test1() {
 
         //given, when
-        var id = database.save(Entries.invoice1);
+        var id = database.save(invoice1);
 
         //then
-        MatcherAssert.assertThat(id, Matchers.is(Entries.invoice1.getId()));
+        MatcherAssert.assertThat(id, Matchers.is(invoice1.getId()));
     }
 
     @Test
     @DisplayName("Should find invoice by given id.")
     void test2() {
         //given
-        Long id = database.save(Entries.invoice1);
+        Long id = database.save(invoice1);
         Long id2 = database.save(Entries.invoice2);
 
         //when
-        Optional<Invoice> invoice = database.findInvoiceById(id);
+        Optional<Invoice> invoice = database.findById(id);
 
 
         //then
-        Assertions.assertEquals(invoice.get(), Entries.invoice1);
+        Assertions.assertEquals(invoice.get(), invoice1);
     }
 
     @Test
     @DisplayName("Should update invoice with given id.")
     void test3() {
         //given, when
-        database.save(Entries.invoice1);
-        database.update(Entries.invoice1.getId(), Entries.invoice2);
+        database.save(invoice1);
+        database.update(invoice1.getId(), Entries.invoice2);
 
         //then
-        MatcherAssert.assertThat(database.getAllInvoices(), Matchers.contains(Entries.invoice2));
+        MatcherAssert.assertThat(database.getAll(), Matchers.contains(Entries.invoice2));
     }
 
     @Test
-    @DisplayName("Should throw an exception when invoice with given id does not exists.")
+    @DisplayName("Should return empty Optional when invoice with given id does not exists.")
     void test4() {
         //given, when
+        Optional<Invoice> result = database.update(444l, invoice1);
         //then
-        assertThrows(IllegalArgumentException.class,
-                () -> database.update(Entries.invoice1.getId(), Entries.invoice2));
+        Assertions.assertEquals( Optional.empty(), result);
     }
 
     @Test
@@ -72,17 +72,17 @@ public abstract class AbstractDatabaseTest {
     void test5() {
         //given, when
         //then
-        assertEquals(Optional.empty(), database.findInvoiceById(22l));
+        assertEquals(Optional.empty(), database.findById(22l));
     }
 
     @Test
     @DisplayName("Should delete invoice with given id.")
     void test6() {
         //given, when
-        database.save(Entries.invoice1);
-        database.delete(Entries.invoice1.getId());
+        database.save(invoice1);
+        database.delete(invoice1.getId());
         //then
-        MatcherAssert.assertThat(database.getAllInvoices(), CoreMatchers.not(Matchers.contains(Entries.invoice1)));
+        MatcherAssert.assertThat(database.getAll(), CoreMatchers.not(Matchers.contains(invoice1)));
     }
 
     @Test

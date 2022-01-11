@@ -37,7 +37,7 @@ class FileBasedDatabase implements Database {
     }
 
     @Override
-    public List<Invoice> getAllInvoices() {
+    public List<Invoice> getAll() {
         try {
             return service.readAllLines(dbPath).stream()
                     .map(line -> jsonService.toObject(line, Invoice.class))
@@ -48,7 +48,7 @@ class FileBasedDatabase implements Database {
     }
 
     @Override
-    public Optional<Invoice> findInvoiceById(final Long id) {
+    public Optional<Invoice> findById(final Long id) {
 
         try {
             return service.readAllLines(dbPath)
@@ -63,21 +63,19 @@ class FileBasedDatabase implements Database {
     }
 
     @Override
-    public void update(final Long id, final Invoice invoice) {
+    public Optional<Invoice> update(final Long id, final Invoice invoice) {
         try {
             List<String> allInvoices = service.readAllLines(dbPath);
             var listWithoutInvoiceWithGivenId = allInvoices.stream()
                     .filter(line -> !containsId(line, id))
                     .collect(Collectors.toList());
 
-            if (allInvoices.size() == listWithoutInvoiceWithGivenId.size()) {
-                throw new IllegalArgumentException("Id " + id + " does not exist");
-            }
-
             invoice.setId(id);
             listWithoutInvoiceWithGivenId.add(jsonService.toJson(invoice));
 
             service.writeLinesToFile(dbPath, listWithoutInvoiceWithGivenId);
+            return allInvoices.isEmpty() ?
+                    Optional.empty() : Optional.of(jsonService.toObject(allInvoices.get(0),Invoice.class));
 
         } catch (IOException e) {
             throw new RuntimeException("Database failed to update invoice with id: " + id, e);
@@ -86,7 +84,7 @@ class FileBasedDatabase implements Database {
     }
 
     @Override
-    public void delete(final Long id) {
+    public Optional<Invoice> delete(final Long id) {
 
         try {
             List<String> allInvoices = service.readAllLines(dbPath);
@@ -100,6 +98,10 @@ class FileBasedDatabase implements Database {
             }
 
             service.writeLinesToFile(dbPath, listWithoutInvoiceWithGivenId);
+            allInvoices.removeAll(listWithoutInvoiceWithGivenId);
+
+            return allInvoices.isEmpty() ?
+                    Optional.empty() : Optional.of(jsonService.toObject(allInvoices.get(0), Invoice.class));
 
         } catch (IOException e) {
             throw new RuntimeException("Database failed to delete invoice with id: " + id, e);

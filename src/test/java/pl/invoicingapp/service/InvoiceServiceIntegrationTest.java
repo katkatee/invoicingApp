@@ -3,6 +3,7 @@ package pl.invoicingapp.service;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static pl.invoicingapp.Entries.invoice1;
 
 class InvoiceServiceIntegrationTest {
     private static InvoiceService service;
@@ -29,12 +31,12 @@ class InvoiceServiceIntegrationTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception when invoice with given id does not exists.")
+    @DisplayName("Should return empty Optional when invoice with given id does not exists.")
     void  test4() {
         //given, when
+        Optional<Invoice> result = service.update(444l, invoice1);
         //then
-        assertThrows(IllegalArgumentException.class,
-                () -> service.update(33L, Entries.invoice2));
+        Assertions.assertEquals( Optional.empty(), result);
     }
 
     @Test

@@ -8,11 +8,6 @@ public class InvoicingAppApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InvoicingAppApplication.class, args);
-
-
-
     }
-
-
 
 }

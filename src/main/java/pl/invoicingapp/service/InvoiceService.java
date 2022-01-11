@@ -6,7 +6,7 @@ import pl.invoicingapp.model.Invoice;
 import java.util.List;
 import java.util.Optional;
 
-class InvoiceService {
+public class InvoiceService {
     private final Database database;
 
     public InvoiceService(Database database) {
@@ -18,18 +18,18 @@ class InvoiceService {
     }
 
     public Optional<Invoice> findByInvoiceId(Long id) {
-        return database.findInvoiceById(id);
+        return database.findById(id);
     }
 
     public List<Invoice> getAllInvoices() {
-        return database.getAllInvoices();
+        return database.getAll();
     }
 
-    public void update(Long id, Invoice updatedInvoice) {
-        database.update(id, updatedInvoice);
+    public Optional<Invoice> update(Long id, Invoice updatedInvoice) {
+        return database.update(id, updatedInvoice);
     }
 
-    public void delete(Long id) {
-        database.delete(id);
+    public Optional<Invoice> delete(Long id) {
+        return database.delete(id);
     }
 }
