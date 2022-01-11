@@ -12,9 +12,9 @@ class IdService {
 
     private Long nextId = 1l;
 
-    IdService(final Path pathIdFile, final FileService databaseInFile) {
+    IdService(final Path pathIdFile, final FileService service) {
         this.idFilePath = pathIdFile;
-        this.service = databaseInFile;
+        this.service = service;
 
     try {
         List<String> lines = service.readAllLines(idFilePath);
