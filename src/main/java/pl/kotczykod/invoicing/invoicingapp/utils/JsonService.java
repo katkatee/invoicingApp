@@ -4,16 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-class JsonService {
+public class JsonService {
     private final ObjectMapper objectMapper;
     {
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    String toJson(Object object) {
+    public String toJson(Object object) {
         try {
             return objectMapper.writeValueAsString(object);
 

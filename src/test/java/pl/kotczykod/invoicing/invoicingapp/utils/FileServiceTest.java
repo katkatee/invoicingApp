@@ -16,7 +16,7 @@ import static pl.kotczykod.invoicing.invoicingapp.Entries.invoice1;
 import static pl.kotczykod.invoicing.invoicingapp.Entries.invoice2;
 
 class FileServiceTest {
-    private FileService service = new FileService();
+    private final FileService service = new FileService();
     private Path path;
 
     {
