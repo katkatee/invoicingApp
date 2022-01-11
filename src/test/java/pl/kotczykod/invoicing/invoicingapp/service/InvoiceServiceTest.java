@@ -1,5 +1,8 @@
 package pl.kotczykod.invoicing.invoicingapp.service;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pl.kotczykod.invoicing.invoicingapp.db.Database;
@@ -65,5 +68,27 @@ class InvoiceServiceTest {
         //then
         verify(database, times(1)).delete(1L);
     }
+
+
+    @Test
+    void  test22() throws JSONException {
+
+    String msg = " [400 : \"{\"code\":\"WL-109\",\"message\":\"Pole 'numer konta' ma nieprawidłową długość. Wymagane 26 znaków.\"}\"]";
+    msg = msg.replaceFirst("400 : \"", "");
+    msg = msg.substring(0,msg.length()-2) + "]";
+
+    //StringBuilder builder = msg.replaceFirst("400 : \"", "").msg.substring(0,msg.length()-2) + "]".build();
+
+
+        JSONArray array = new JSONArray(msg);
+
+            JSONObject object = array.getJSONObject(0);
+            System.out.println(object.getString("code"));
+            System.out.println(object.getString("message"));
+
+
+
+    }
+
 
 }
