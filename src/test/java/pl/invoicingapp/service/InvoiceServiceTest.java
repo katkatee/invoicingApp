@@ -42,7 +42,7 @@ class InvoiceServiceTest {
         Optional<Invoice> result = service.findByInvoiceId(1L);
 
         //then
-        verify(database, times(1)).findInvoiceById(1L);
+        verify(database, times(1)).findById(1L);
     }
 
     @Test
@@ -52,7 +52,7 @@ class InvoiceServiceTest {
         List<Invoice> invoices = service.getAllInvoices();
 
         //then
-        verify(database, times(1)).getAllInvoices();
+        verify(database, times(1)).getAll();
     }
 
     @Test

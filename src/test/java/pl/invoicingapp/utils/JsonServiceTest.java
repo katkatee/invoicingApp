@@ -21,5 +21,6 @@ class JsonServiceTest {
 
         //then
         Assertions.assertEquals(invoiceAsObject, invoice1);
+        System.out.println(service.toJson(invoice1));
     }
 }

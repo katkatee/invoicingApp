@@ -1,10 +1,14 @@
 package pl.invoicingapp.db.memory;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 import pl.invoicingapp.db.Database;
 import pl.invoicingapp.model.Invoice;
 
 import java.util.*;
 
+@Primary
+@Repository
 public class InMemoryDatabase implements Database {
     private Map<Long, Invoice> invoices = new HashMap<>();
     Long nextId = 1l;
@@ -18,31 +22,27 @@ public class InMemoryDatabase implements Database {
     }
 
     @Override
-    public List<Invoice> getAllInvoices() {
+    public List<Invoice> getAll() {
         return new ArrayList<>(invoices.values());
     }
 
     @Override
-    public Optional<Invoice> findInvoiceById(final Long id) {
+    public Optional<Invoice> findById(final Long id) {
         return Optional.ofNullable(invoices.get(id));
     }
 
     @Override
-    public void update(final Long id, final Invoice invoice) {
-        if (!invoices.containsKey(id)) {
-            throw new IllegalArgumentException("Id :" + id + " does not exists.");
-        }
-
-        invoice.setId(id);
-        invoices.put(id, invoice);
+    public Optional<Invoice> update(final Long id, final Invoice updatedInvoice) {
+        updatedInvoice.setId(id);
+        return Optional.ofNullable(invoices.put(id, updatedInvoice));
     }
 
     @Override
-    public void delete(final Long id) {
+    public Optional<Invoice> delete(final Long id) {
         if (!invoices.containsKey(id)) {
             throw new IllegalArgumentException("Id :" + id + " does not exists.");
         }
 
-        invoices.remove(id);
+        return Optional.ofNullable(invoices.remove(id));
     }
 }

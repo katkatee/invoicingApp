@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface Database {
     Long save(Invoice invoice);
 
-    List<Invoice> getAllInvoices();
+    List<Invoice> getAll();
 
-    Optional<Invoice> findInvoiceById(Long id);
+    Optional<Invoice> findById(Long id);
 
-    void update(Long id, Invoice invoice);
+    Optional<Invoice> update(Long id, Invoice invoice);
 
-    void delete(Long id);
+    Optional<Invoice> delete(Long id);
 }
