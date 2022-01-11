@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
-class IdService {
+public class IdService {
     private final Path idFilePath;
     private final FileService service;
 
     private Long nextId = 1l;
 
-    IdService(final Path pathIdFile, final FileService service) {
+    public IdService(final Path pathIdFile, final FileService service) {
         this.idFilePath = pathIdFile;
         this.service = service;
 
