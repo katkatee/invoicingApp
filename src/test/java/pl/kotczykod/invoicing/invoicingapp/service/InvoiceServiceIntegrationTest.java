@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pl.kotczykod.invoicing.invoicingapp.db.Database;
-import pl.kotczykod.invoicing.invoicingapp.db.inMemory.InMemoryDatabase;
+import pl.kotczykod.invoicing.invoicingapp.db.memory.InMemoryDatabase;
 import pl.kotczykod.invoicing.invoicingapp.model.Invoice;
 
 import java.math.BigDecimal;

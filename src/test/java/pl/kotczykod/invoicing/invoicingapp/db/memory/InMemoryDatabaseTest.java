@@ -1,4 +1,4 @@
-package pl.kotczykod.invoicing.invoicingapp.db.inMemory;
+package pl.kotczykod.invoicing.invoicingapp.db.memory;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.DisplayName;

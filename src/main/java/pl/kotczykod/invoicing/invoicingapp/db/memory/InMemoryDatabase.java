@@ -1,4 +1,4 @@
-package pl.kotczykod.invoicing.invoicingapp.db.inMemory;
+package pl.kotczykod.invoicing.invoicingapp.db.memory;
 
 import pl.kotczykod.invoicing.invoicingapp.db.Database;
 import pl.kotczykod.invoicing.invoicingapp.model.Invoice;

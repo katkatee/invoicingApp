@@ -1,0 +1,25 @@
+{
+  "id" : 1,
+  "date" : "2022-01-09",
+  "buyer" : {
+    "id" : 2,
+    "taxIdentificationNumber" : "767654239",
+    "address" : "Wiklinowa 2/3, 44-323 Warszawa"
+  },
+  "seller" : {
+    "id" : 1,
+    "taxIdentificationNumber" : "7656542343",
+    "address" : "Kasztanowa 2/3, 44-323 Warszawa"
+  },
+  "entries" : [ {
+    "description" : "Pudełko",
+    "price" : 22.35,
+    "vatValue" : 5,
+    "rate" : "VAT_5"
+  }, {
+    "description" : "Książka",
+    "price" : 65.25,
+    "vatValue" : 8,
+    "rate" : "VAT_8"
+  } ]
+}
