@@ -50,7 +50,7 @@ class InvoiceServiceTest {
     }
 
     @Test
-    @DisplayName("Calling getAllInvoices() should delegate to database method.")
+    @DisplayName("Calling getAll() should delegate to database method.")
     void Test5() {
         //given, when
         List<Invoice> invoices = service.getAllInvoices();
@@ -60,7 +60,7 @@ class InvoiceServiceTest {
     }
 
     @Test
-    @DisplayName("Calling getAllInvoices() should delegate to database method.")
+    @DisplayName("Calling getAll() should delegate to database method.")
     void Test6() {
         //given, when
         service.delete(1L);
