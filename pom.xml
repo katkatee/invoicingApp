@@ -18,6 +18,8 @@
         <java.version>11</java.version>
         <jacson.version>2.13.1</jacson.version>
         <json.version>2.6.2</json.version>
+        <swagger.version>3.0.0</swagger.version>
+
     </properties>
 
     <dependencies>
@@ -54,6 +56,18 @@
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.cli</artifactId>
             <version>0.8.7</version>
+        </dependency>
+
+        <!--Swagger-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
         </dependency>
 
     </dependencies>
