@@ -89,10 +89,6 @@ class FileBasedDatabase implements Database {
                     .filter(line -> !containsId(line, id))
                     .collect(Collectors.toList());
 
-            if (allInvoices.size() == listWithoutInvoiceWithGivenId.size()) {
-                throw new IllegalArgumentException("Id " + id + " does not exist");
-            }
-
             service.writeLinesToFile(databasePath, listWithoutInvoiceWithGivenId);
             allInvoices.removeAll(listWithoutInvoiceWithGivenId);
 

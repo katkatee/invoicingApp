@@ -18,7 +18,6 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static pl.invoicingapp.Entries.invoice1;
 
 class InvoiceServiceIntegrationTest {
@@ -96,10 +95,10 @@ class InvoiceServiceIntegrationTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception when invoice with given id does not exists.")
+    @DisplayName("Should return an empty Optional when invoice with given id does not exists.")
     void  test7() {
         //given, when
         //then
-        assertThrows(IllegalArgumentException.class, () -> service.delete(22l));
+        assertThat(service.delete(22l), is(Optional.empty()));
     }
 }

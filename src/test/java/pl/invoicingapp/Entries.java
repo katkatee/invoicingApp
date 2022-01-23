@@ -15,8 +15,8 @@ public class Entries {
     public static Company buyer = new Company(1l, "7656542343", "Kasztanowa 2/3, 44-323 Warszawa");
     public static Company seller = new Company(2l, "767654239", "Wiklinowa 2/3, 44-323 Warszawa");
 
-    public static InvoiceEntry entry1 = new InvoiceEntry("Pudełko", BigDecimal.valueOf(22.35), BigDecimal.valueOf(5), Vat.VAT_5);
-    public static InvoiceEntry entry2 = new InvoiceEntry("Książka", BigDecimal.valueOf(65.25), BigDecimal.valueOf(8), Vat.VAT_8);
+    public static InvoiceEntry entry1 = new InvoiceEntry("Pudelko", BigDecimal.valueOf(22.35), BigDecimal.valueOf(5), Vat.VAT_5);
+    public static InvoiceEntry entry2 = new InvoiceEntry("Ksiazka", BigDecimal.valueOf(65.25), BigDecimal.valueOf(8), Vat.VAT_8);
     public static InvoiceEntry entry3 = new InvoiceEntry("Kubek", BigDecimal.valueOf(10), BigDecimal.valueOf(23), Vat.VAT_23);
     public static InvoiceEntry entry4 = new InvoiceEntry("Papier", BigDecimal.valueOf(87.05), BigDecimal.valueOf(7), Vat.VAT_7);
     public static Invoice invoice1 = new Invoice(1l, LocalDate.now(), seller, buyer, List.of(entry1, entry2));
