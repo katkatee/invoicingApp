@@ -2,6 +2,8 @@ package pl.invoicingapp.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import pl.invoicingapp.Entries;
 import pl.invoicingapp.db.Database;
 import pl.invoicingapp.model.Invoice;
@@ -11,8 +13,10 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
+@AutoConfigureMockMvc
+@SpringBootTest
 class InvoiceServiceTest {
-    Database database = mock(Database.class);
+    private Database database = mock(Database.class);
     InvoiceService service = new InvoiceService(database);
 
     @Test

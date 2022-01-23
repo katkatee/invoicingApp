@@ -8,7 +8,7 @@ import pl.invoicingapp.service.InvoiceService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/invoices/api")
+@RequestMapping(value = "/invoices/api")
 class InvoiceController {
     private final InvoiceService service;
 
@@ -16,7 +16,7 @@ class InvoiceController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping(produces = { "application/json;charset=UTF-8" })
     public List<Invoice> getAllInvoices() {
         return service.getAllInvoices();
     }

@@ -1,7 +1,6 @@
 package pl.invoicingapp.db;
 
 import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +10,8 @@ import pl.invoicingapp.model.Invoice;
 
 import java.util.Optional;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static pl.invoicingapp.Entries.invoice1;
 
 public abstract class AbstractDatabaseTest {
@@ -29,7 +28,7 @@ public abstract class AbstractDatabaseTest {
         var id = database.save(invoice1);
 
         //then
-        MatcherAssert.assertThat(id, Matchers.is(invoice1.getId()));
+        assertThat(id, Matchers.is(invoice1.getId()));
     }
 
     @Test
@@ -55,7 +54,7 @@ public abstract class AbstractDatabaseTest {
         database.update(invoice1.getId(), Entries.invoice2);
 
         //then
-        MatcherAssert.assertThat(database.getAll(), Matchers.contains(Entries.invoice2));
+        assertThat(database.getAll(), Matchers.contains(Entries.invoice2));
     }
 
     @Test
@@ -82,14 +81,14 @@ public abstract class AbstractDatabaseTest {
         database.save(invoice1);
         database.delete(invoice1.getId());
         //then
-        MatcherAssert.assertThat(database.getAll(), CoreMatchers.not(Matchers.contains(invoice1)));
+        assertThat(database.getAll(), CoreMatchers.not(Matchers.contains(invoice1)));
     }
 
     @Test
-    @DisplayName("Should throw an exception when invoice with given id does not exists.")
+    @DisplayName("Should return an empty Optional when invoice with given id does not exists.")
     void test7() {
         //given, when
         //then
-        assertThrows(RuntimeException.class, () -> database.delete(202l));
+        assertThat(database.delete(22l), Matchers.is(Optional.empty()));
     }
 }
