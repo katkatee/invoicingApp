@@ -1,5 +1,6 @@
 package pl.invoicingapp.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.invoicingapp.model.Invoice;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/invoices/api")
+@Api(tags = {"invoice-controller"})
 class InvoiceController {
     private final InvoiceService service;
 
