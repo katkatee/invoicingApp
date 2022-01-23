@@ -1,14 +1,12 @@
 package pl.invoicingapp.db.memory;
 
 import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
 import pl.invoicingapp.db.Database;
 import pl.invoicingapp.model.Invoice;
 
 import java.util.*;
 
 @Primary
-@Repository
 public class InMemoryDatabase implements Database {
     private Map<Long, Invoice> invoices = new HashMap<>();
     Long nextId = 1l;
